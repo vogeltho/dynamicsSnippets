@@ -12,8 +12,8 @@ var LimitToType = window.LimitToType || {};
 
     // Code to run in the form OnLoad event
     // executionContext: execution context (checkbox in UI)
-    // fieldName:  the logical name of the field
-    // fieldLimitationType: the entity type you want to see (only 1)
+    // fieldName:  the logical name of the field, ex.: "customerid"
+    // fieldLimitationType: the entity type you want to see (only 1), ex.: "account"
 
     this.formOnLoad = function (executionContext, fieldName, fieldLimitationType) {
         try {
