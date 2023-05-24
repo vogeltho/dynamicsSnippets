@@ -1,7 +1,8 @@
 // A namespace defined for the sample code
 // As a best practice, you should always define 
 // a unique namespace for your libraries
-var Example = window.Example || {};
+// Based on https://learn.microsoft.com/de-de/power-apps/developer/model-driven-apps/clientapi/walkthrough-write-your-first-client-script 
+var LimitToType = window.LimitToType || {};
 (function () {
     // Define global variables
     var myUniqueId = "_myLimitToAccountId"; // Define an ID for the notification
@@ -10,13 +11,17 @@ var Example = window.Example || {};
 
 
     // Code to run in the form OnLoad event
-    this.formOnLoad = function (executionContext) {
+    // executionContext: execution context (checkbox in UI)
+    // fieldName:  the logical name of the field
+    // fieldLimitationType: the entity type you want to see (only 1)
+
+    this.formOnLoad = function (executionContext, fieldName, fieldLimitationType) {
         try {
             var formContext = executionContext.getFormContext();
-            formContext.getControl("customerid").setEntityTypes(["account"]);
+            formContext.getControl(fieldName).setEntityTypes([fieldLimitationType]);
         } catch (e) {
             formContext.ui.setFormNotification(errorMessage, "ERROR", myUniqueId);
         }
     }
 
-}).call(Example);
+}).call(LimitToType);
